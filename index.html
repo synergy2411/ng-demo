@@ -1,4 +1,4 @@
-<html ng-app>
+<html ng-app="UserModule">
     <head>
         <title>My App</title>
         <script src="./node_modules/angular/angular.min.js"></script>
@@ -7,8 +7,33 @@
     </head>
     <body>
         
-        <div class="container">
-            <h1> {{ "App" + " Loaded Successfully !" }} </h1>
+        <div class="container" ng-controller="UserController">
+            <h1> {{ helloMsg }} </h1>
+            <ul class="list-unstyled">
+                <li class="well"> 
+                    <!-- <img src="{{user.image}}" alt=""> -->
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                            <img ng-src="{{user.image}}" alt="{{user.firstName}}" 
+                                class="img-responsive img-circle">
+                                <hr><br>
+                                <button class="btn btn-info btn-sm" ng-click="moreInfo(user)">More Info</button>
+
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+                            <p>Income  : {{ user.income }}</p>
+                            <p>Date of Birth : {{ user.dob }}</p>
+                            <p>Date of Birth : <span ng-bind="{{user.dob}}"></span></p>   
+                            <em class="pull-right">
+                                Total Votes : {{ user.vote }}
+                                <input type="number" ng-model="user.vote" class="form-control">
+                            </em> 
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
         </div>
         
     </body>
