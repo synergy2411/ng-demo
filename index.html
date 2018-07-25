@@ -17,21 +17,72 @@
                             <img ng-src="{{user.image}}" alt="{{user.firstName}}" 
                                 class="img-responsive img-circle">
                                 <hr><br>
-                                <button class="btn btn-info btn-sm" ng-click="moreInfo(user)">More Info</button>
-
+                                <button class="btn btn-info btn-sm" 
+                                    ng-click="moreInfo(user)">More Info</button>
                         </div>
                         <div class="col-xs-8 col-sm-8 col-md-8">
                             <h1>{{ user.firstName }} {{ user.lastName }}</h1>
                             <p>Income  : {{ user.income }}</p>
                             <p>Date of Birth : {{ user.dob }}</p>
-                            <p>Date of Birth : <span ng-bind="{{user.dob}}"></span></p>   
-                            <em class="pull-right">
+                            <!-- <p>Date of Birth : <span ng-bind="{{user.dob}}"></span></p>    -->
+                            <em>
                                 Total Votes : {{ user.vote }}
                                 <input type="number" ng-model="user.vote" class="form-control">
                             </em> 
                         </div>
                     </div>
-
+                    <br>
+                    <hr>
+                    <div ng-controller="PanelController">
+                        <div class="row">
+                            <ul class="nav nav-pills">
+                                <li ng-class="{'active' : isSelected(1)}">
+                                    <a href="" ng-click="selTab(1)">About User</a></li>
+                                <li ng-class="{'active' : isSelected(2)}">
+                                    <a href="" ng-click="selTab(2)">User Reviews</a></li>
+                                <li ng-class="{'active' : isSelected(3)}">
+                                    <a href="" ng-click="selTab(3)">Comments</a></li>
+                            </ul>
+                        </div>
+                        <br>
+                        
+                        <div class="row">
+                            <div ng-if="isSelected(1)">All about User....</div>
+                            <div ng-if="isSelected(2)">
+                                <h2 class="text-center text-primary">User Reviews</h2>
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="review in user.reviews">
+                                        <strong> Stars : {{ review.stars }}</strong> <br>
+                                        <blockquote> {{ review.body }} by 
+                                            <cite>{{ review.author }}</cite>
+                                        </blockquote>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div ng-if="isSelected(3)" ng-controller="ReviewController">
+                                <h2 class="text-primary text-center"> Comments </h2>
+                                    Stars : 
+                                    <select name="" class="form-control" ng-model= "comment.stars">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select> <br>
+                                    <textarea name="" class="form-control" 
+                                        cols="30" rows="10" ng-model="comment.body"></textarea> <br>
+                                    <input type="email" class="form-control" ng-model="comment.author"> <br>
+                                    
+                                    <button type="button" 
+                                        class="btn btn-large btn-block btn-default"
+                                        ng-click="submitComment(user)">
+                                        Submit Commit
+                                    </button>
+                                    
+                              
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
