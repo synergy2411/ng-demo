@@ -9,7 +9,7 @@ gulp.task("build", function(){
         .pipe(gulp.dest("./dist"));
 })
 
-gulp.task("js-watch", ["build"], function(done){
+gulp.task("js-watch", function(done){
     console.log("RELOADING...");
     browserSync.reload();
     done();

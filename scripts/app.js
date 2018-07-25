@@ -3,9 +3,20 @@ console.log("APP LOADED SUCCESFULLY!");
     var app = angular.module("UserModule", []);
     app.controller("UserController", function ($scope) {
         $scope.helloMsg = "Hello World!";
-        $scope.user = user;
+        $scope.users = users;
         $scope.moreInfo = function (user) {
             alert(user.firstName + " is working with " + user.company + "!");
+        }
+        $scope.maxVote = function(){
+            var username;
+            var MAX_VOTES = 0;
+            $scope.users.forEach(function(user){
+                if(user.vote > MAX_VOTES){
+                    MAX_VOTES = user.vote;
+                    username = user.firstName;
+                }
+            });
+            alert("Mr. " + username + " got highest votes!");
         }
     });
     app.controller("PanelController", function ($scope) {
@@ -24,11 +35,11 @@ console.log("APP LOADED SUCCESFULLY!");
             user.reviews.push($scope.comment);
             $scope.comment = {};
         }
-    })
+    });
 })();
 
 // Model
-user = {
+users = [{
     firstName: "Bill",
     lastName: "Gates",
     dob: new Date("Dec 21, 1965"),
@@ -47,4 +58,43 @@ user = {
         author: "pqr@test.com"
     }
     ]
-}
+},
+{
+    firstName: "Steve",
+    lastName: "Jobs",
+    dob: new Date("Jan 2, 1965"),
+    income: 0,
+    isWorking: false,
+    company: "Apple",
+    image: "./assets/images/users_images/steve.png",
+    vote: 100,
+    reviews: [{
+        stars: 5,
+        body: "I like Mr. Steve",
+        author: "abc@test.com"
+    },{
+        stars: 3,
+        body: "Great job Mr. Steve!",
+        author: "pqr@test.com"
+    }
+    ]
+},{
+    firstName: "Tim B.",
+    lastName: "Lee",
+    dob: new Date("Aug 1, 1965"),
+    income: 40000,
+    isWorking: true,
+    company: "World Wide Web",
+    image: "./assets/images/users_images/tim.jpg",
+    vote: 180,
+    reviews: [{
+        stars: 5,
+        body: "I like Mr. Tim",
+        author: "abc@test.com"
+    },{
+        stars: 3,
+        body: "Great job Mr. Tim!",
+        author: "pqr@test.com"
+    }
+    ]
+}]

@@ -25,7 +25,7 @@ console.log("APP LOADED SUCCESFULLY!");
             user.reviews.push($scope.comment);
             $scope.comment = {};
         }
-    })
+    });
 })();
 
 // Model
