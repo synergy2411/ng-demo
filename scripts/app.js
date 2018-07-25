@@ -1,6 +1,20 @@
 console.log("APP LOADED SUCCESFULLY!");
 (function () {
     var app = angular.module("UserModule", []);
+    app.controller("RedController", function($scope, $rootScope){
+        $scope.color = "RED";
+        $rootScope.rootColor = "BLUE";
+    });
+    app.controller("GreenController", function($scope, $rootScope){
+        $scope.color = "GREEN";
+        $rootScope.rootColor = "BLACK";
+    });
+    app.config(function(){
+        console.log("CONFIG");
+    });
+    app.run(function(){
+        console.log("RUN");
+    });
     app.controller("UserController", function ($scope) {
         $scope.helloMsg = "Hello World!";
         $scope.users = users;
@@ -36,6 +50,36 @@ console.log("APP LOADED SUCCESFULLY!");
             $scope.comment = {};
         }
     });
+
+    // Directives Demo
+    // app.directive("productDetails", function(){
+    //     return {
+    //         restrict : 'E',
+    //         template : '<h2>Showing Product details...</h2>'
+    //     }
+    // });
+    // app.directive("productDetails", function(){
+    //     return {
+    //         restrict : 'A',
+    //         template : '<h2>Showing Product details...</h2>'
+    //     }
+    // });
+    app.directive("productDetails", function(){
+        return {
+            restrict : 'C',
+            template : '<h2>Showing Class Directive details...</h2>'
+        }
+    });
+    app.directive("commentdirective", function(){
+        return {
+            restrict : 'M',
+            replace : true,
+            // template : '<h2>Showing Comment Directive  details...</h2>'
+            templateUrl : './views/directives/comment.directive.html'
+        }
+    });
+    
+
 })();
 
 // Model

@@ -5,3 +5,7 @@
 .ng-valid.ng-touched{
     border-bottom: 2px green solid;
 }
+
+.ng-cloak{
+    display : none !important;
+}

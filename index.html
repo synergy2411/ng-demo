@@ -8,6 +8,38 @@
 </head>
 <body>
 
+    
+    <div class="container">
+        <div ng-controller="RedController">
+            <span class="ng-cloak">  Color : {{ color }} </span>
+            Root Color : {{ rootColor }}
+        </div>
+        <br><hr>
+        <div ng-controller="GreenController">
+            Color : {{ color }}
+            Root Color : {{ rootColor }}
+        </div>
+
+        <!-- ng-include Demo -->
+
+        <div ng-include="'./views/partials.html'"></div>
+
+
+        <!-- Directives Demo -->
+
+        <!-- Element Directive -->
+        <!-- <product-details></product-details> -->
+
+        <!-- Attribute Directive -->
+        <!-- <div product-details></div> -->
+        
+        <!-- Class Directive -->
+        <!-- <div class="product-details"></div> -->
+
+        <!-- Comment Directive -->
+        <!-- directive: commentdirective -->
+    </div>
+
 <div class="container" ng-controller="UserController">
     <h1> {{ helloMsg }} 
         <span class="pull-right"> 
