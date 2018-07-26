@@ -3,12 +3,14 @@
     .directive("demoDirective", function(){
         return {
             restrict : 'ACE',
-            template : '<h2>Name  : {{ demoName }}</h2> <button ng-click="callmsg()">Call Parent</button>',
+            // template : '<div ng-transclude></div><h2>Name  : {{ demoName }}</h2> <button ng-click="callmsg()">Call Parent</button>',
+            templateUrl : './views/directives/directive-demo.html',
             scope : {
                 xyz : '@' ,     //Text binding
                 abc : '=' ,      //Two way binding
                 callmsg : '&'
             },
+            transclude : true,
             link : function(scope, element, attributes){
                 // Inherited Parent Scope
                 // console.log(scope.demoName);                

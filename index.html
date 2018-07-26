@@ -5,15 +5,56 @@
 <script src="./scripts/app.js"></script>
 <script src="./scripts/product-module.js"></script>
 <script src="./scripts/directive-demo-module.js"></script>
+<script src="./scripts/filter-module.js"></script>
 <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
 
+    <div class="container" ng-controller="FilterController">
+            <table class="table table-stripped table-responsive">
+                <thead>
+                <tr>
+                    <th colspan="3">Filtering Demo</th>
+                </tr>
+                <tr>
+                    <th align="right">Sort by :</th>
+                    <th>
+                        <select ng-model="sortColumn">
+                            <option value="+employeeId">Id</option>
+                            <option value="+employeeName">Name</option>
+                        </select>
+                    </th>
+                    <th>
+                        <input ng-model="sortOrder" name="order" type="radio"/>Ascending
+                        <input ng-model="sortOrder" name="order" type="radio" value="reverse"/>Descending
+                    </th>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Contact Number</th>
+                </tr>
+                
+                </thead>
+                <tbody>
+                    <tr ng-repeat="employee in employees |orderBy:sortColumn:sortOrder">
+                        <td>{{employee.employeeId }}</td>
+                        <td>{{employee.employeeName| uppercase}}</td>
+                        <td>{{employee.contactNumber }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+                
+    </div>
+
+
     <div class="container" ng-controller="DemoController">
         <input type="text" ng-model="demoName">
-        <demo-directive xyz="demoName" abc="demoName" callmsg="sendMessage()"></demo-directive>
+        <demo-directive xyz="demoName" abc="demoName" callmsg="sendMessage()">
+            <h2>Hello from {{ demoName }}</h2>
+        </demo-directive>
     </div>
 
 
@@ -61,7 +102,7 @@
     </h1>
     
     <ul class="list-unstyled">
-        <li class="well" ng-repeat="user in users"> 
+        <li class="well" ng-repeat="user in users | limitTo : 3 | orderBy : 'firstName' | filter : 'Bill'"> 
             <!-- <img src="{{user.image}}" alt=""> -->
             <div class="row">
                 <div class="col-xs-2 col-sm-2 col-md-2">

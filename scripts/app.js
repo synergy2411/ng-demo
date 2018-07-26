@@ -1,6 +1,6 @@
 console.log("APP LOADED SUCCESFULLY!");
 (function () {
-    var app = angular.module("UserModule", ["ProductModule", "DirectiveDemoModule"]);
+    var app = angular.module("UserModule", ["ProductModule", "DirectiveDemoModule", "FilterModule"]);
     app.controller("RedController", function($scope, $rootScope){
         $scope.color = "RED";
         $rootScope.rootColor = "BLUE";
