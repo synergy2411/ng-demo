@@ -3,12 +3,23 @@
 <title>My App</title>
 <script src="./node_modules/angular/angular.min.js"></script>
 <script src="./scripts/app.js"></script>
+<script src="./scripts/product-module.js"></script>
+<script src="./scripts/directive-demo-module.js"></script>
 <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-    
+
+    <div class="container" ng-controller="DemoController">
+        <input type="text" ng-model="demoName">
+        <demo-directive xyz="demoName" abc="demoName" callmsg="sendMessage()"></demo-directive>
+    </div>
+
+
+    <product-directive></product-directive>
+    <br><hr>
+
     <div class="container">
         <div ng-controller="RedController">
             <span class="ng-cloak">  Color : {{ color }} </span>
@@ -28,7 +39,7 @@
         <!-- Directives Demo -->
 
         <!-- Element Directive -->
-        <!-- <product-details></product-details> -->
+        <product-details class="myclass"></product-details>
 
         <!-- Attribute Directive -->
         <!-- <div product-details></div> -->
@@ -61,14 +72,15 @@
                             ng-click="moreInfo(user)">More Info</button>
                 </div>
                 <div class="col-xs-8 col-sm-8 col-md-8">
-                    <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+                    <user-info></user-info>
+                    <!-- <h1>{{ user.firstName }} {{ user.lastName }}</h1>
                     <p ng-if="user.isWorking">Income  : {{ user.income }}</p>
                     <p>Date of Birth : {{ user.dob }}</p>
-                    <!-- <p>Date of Birth : <span ng-bind="{{user.dob}}"></span></p>    -->
+                    <!-- <p>Date of Birth : <span ng-bind="{{user.dob}}"></span></p>    
                     <em>
                         Total Votes : {{ user.vote }}
                         <input type="number" ng-model="user.vote" class="form-control">
-                    </em> 
+                    </em>  -->
                 </div>
             </div>
             <br>
@@ -89,7 +101,8 @@
                 <div class="row">
                     <div ng-if="isSelected(1)">All about User....</div>
                     <div ng-if="isSelected(2)">
-                        <h2 class="text-center text-primary">User Reviews</h2>
+                        <comment-review></comment-review>
+                        <!-- <h2 class="text-center text-primary">User Reviews</h2>
                         <ul class="list-group">
                             <li class="list-group-item" ng-repeat="review in user.reviews">
                                 <strong> Stars : {{ review.stars }}</strong> <br>
@@ -97,10 +110,11 @@
                                     <cite>{{ review.author }}</cite>
                                 </blockquote>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
-                    <div ng-if="isSelected(3)" ng-controller="ReviewController">
-                        <form name="commentForm">
+                    <div ng-if="isSelected(3)">
+                        <comment-form></comment-form>
+                        <!-- <form name="commentForm">
                         <h2 class="text-primary text-center"> Comments </h2>
                             Stars : 
                             <select name="stars" class="form-control" ng-model= "comment.stars" required>
@@ -116,7 +130,7 @@
                                 cols="30" rows="10" ng-model="comment.body"></textarea> <br>
                             <!-- <div ng-show="!commentForm.body.$valid">
                                 Error : {{ commentForm.body.$error }}
-                            </div> -->
+                            </div> 
                             <div ng-hide="commentForm.body.$valid || commentForm.body.$untouched"> 
                                     Some Problem with Textarea.
                                     <div ng-hide="!commentForm.body.$error.required">
@@ -127,9 +141,9 @@
                                     </div>
                             </div>
                             <input type="email" name="email" class="form-control" required ng-model="comment.author"> <br>
-                             <!-- <div ng-show="!commentForm.email.$valid">
+                              <div ng-show="!commentForm.email.$valid">
                                 Error : {{ commentForm.email.$error }}
-                            </div> -->
+                            </div> 
                             <div ng-hide="commentForm.email.$valid || commentForm.email.$untouched">
                                 Some porblem with email field.
                                 <div ng-hide="commentForm.email.$error.required">
@@ -145,7 +159,7 @@
                                 Submit Commit
                             </button>
                             Form State : {{ commentForm.$valid }}
-                        </form>
+                        </form> -->
                         
                     </div>
                 </div>

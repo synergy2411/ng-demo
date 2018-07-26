@@ -1,0 +1,8 @@
+<h1>{{ user.firstName }} {{ user.lastName }}</h1>
+<p ng-if="user.isWorking">Income  : {{ user.income }}</p>
+<p>Date of Birth : {{ user.dob }}</p>
+<!-- <p>Date of Birth : <span ng-bind="{{user.dob}}"></span></p>    -->
+<em>
+    Total Votes : {{ user.vote }}
+    <input type="number" ng-model="user.vote" class="form-control">
+</em> 

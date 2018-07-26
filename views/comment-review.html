@@ -1,0 +1,9 @@
+<h2 class="text-center text-primary">User Reviews</h2>
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="review in user.reviews">
+        <strong> Stars : {{ review.stars }}</strong> <br>
+        <blockquote> {{ review.body }} by 
+            <cite>{{ review.author }}</cite>
+        </blockquote>
+    </li>
+</ul>

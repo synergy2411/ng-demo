@@ -1,0 +1,46 @@
+<form name="commentForm">
+<h2 class="text-primary text-center"> Comments </h2>
+    Stars : 
+    <select name="stars" class="form-control" ng-model= "comment.stars" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select> <br>
+    <div ng-hide="commentForm.stars.$valid || commentForm.stars.$untouched"> 
+        Some Problem with drop-down list.</div>
+    <textarea name="body" class="form-control" required minlength="10"
+        cols="30" rows="10" ng-model="comment.body"></textarea> <br>
+    <!-- <div ng-show="!commentForm.body.$valid">
+        Error : {{ commentForm.body.$error }}
+    </div> -->
+    <div ng-hide="commentForm.body.$valid || commentForm.body.$untouched"> 
+            Some Problem with Textarea.
+            <div ng-hide="!commentForm.body.$error.required">
+                Textarea is madatory field!
+            </div>
+            <div ng-hide="!commentForm.body.$error.minlength">
+                Textarea min length should be 10 characters long!
+            </div>
+    </div>
+    <input type="email" name="email" class="form-control" required ng-model="comment.author"> <br>
+        <!-- <div ng-show="!commentForm.email.$valid">
+        Error : {{ commentForm.email.$error }}
+    </div> -->
+    <div ng-hide="commentForm.email.$valid || commentForm.email.$untouched">
+        Some porblem with email field.
+        <div ng-hide="commentForm.email.$error.required">
+            Email is mandatory!
+        </div>
+        <div ng-hide="commentForm.email.$error.email">
+            Please enter valid email only!
+        </div>
+    </div>
+    <button type="button" ng-disabled="!commentForm.$valid"
+        class="btn btn-large btn-block btn-default"
+        ng-click="submitComment(user)">
+        Submit Commit
+    </button>
+    Form State : {{ commentForm.$valid }}
+</form>

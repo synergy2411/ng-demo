@@ -1,6 +1,6 @@
 console.log("APP LOADED SUCCESFULLY!");
 (function () {
-    var app = angular.module("UserModule", []);
+    var app = angular.module("UserModule", ["ProductModule", "DirectiveDemoModule"]);
     app.controller("RedController", function($scope, $rootScope){
         $scope.color = "RED";
         $rootScope.rootColor = "BLUE";
@@ -52,10 +52,50 @@ console.log("APP LOADED SUCCESFULLY!");
     });
 
     // Directives Demo
+    app.directive("commentForm", function(){
+        return {
+            restrict : 'ACE',
+            templateUrl : './views/comment-form.html',
+            controller : function($scope){
+                $scope.comment = {};
+                $scope.submitComment = function(user){
+                    // console.log($scope.comment);
+                    user.reviews.push($scope.comment);
+                    $scope.comment = {};
+                }
+            }
+        }
+    })
+    app.directive("commentReview", function(){
+        return {
+            restrict : 'ACE',
+            templateUrl : './views/comment-review.html'
+        }
+    })
+    app.directive("userInfo", function(){
+        return {
+            restrict : 'ACE',
+            templateUrl : './views/user-info.html'
+        }
+    })
     // app.directive("productDetails", function(){
     //     return {
     //         restrict : 'E',
-    //         template : '<h2>Showing Product details...</h2>'
+    //         template : '<h2>Showing {{ productName }} details...</h2>',
+    //         // compile : function(element, attributes){
+    //         //     return function(scope, element, attributes, controller){}
+    //         // }
+    //         link : function(scope, element, attributes){
+    //             element.on("click", function(){
+    //                 alert("Clicked");
+    //                 attributes.$addClass("feature");
+    //                 scope.$apply();
+    //             } )
+    //         },
+    //         controller : function($scope){
+    //             $scope.productName = "MyProduct";
+    //         }
+            
     //     }
     // });
     // app.directive("productDetails", function(){
@@ -64,20 +104,20 @@ console.log("APP LOADED SUCCESFULLY!");
     //         template : '<h2>Showing Product details...</h2>'
     //     }
     // });
-    app.directive("productDetails", function(){
-        return {
-            restrict : 'C',
-            template : '<h2>Showing Class Directive details...</h2>'
-        }
-    });
-    app.directive("commentdirective", function(){
-        return {
-            restrict : 'M',
-            replace : true,
-            // template : '<h2>Showing Comment Directive  details...</h2>'
-            templateUrl : './views/directives/comment.directive.html'
-        }
-    });
+    // app.directive("productDetails", function(){
+    //     return {
+    //         restrict : 'C',
+    //         template : '<h2>Showing Class Directive details...</h2>'
+    //     }
+    // });
+    // app.directive("commentdirective", function(){
+    //     return {
+    //         restrict : 'M',
+    //         replace : true,
+    //         // template : '<h2>Showing Comment Directive  details...</h2>'
+    //         templateUrl : './views/directives/comment.directive.html'
+    //     }
+    // });
     
 
 })();
