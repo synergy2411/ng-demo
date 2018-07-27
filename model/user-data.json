@@ -1,0 +1,70 @@
+{
+    "users": [
+        {
+            "firstName": "Bill",
+            "lastName": "Gates",
+            "dob": "1965-12-20T18:30:00.000Z",
+            "income": 50000,
+            "isWorking": true,
+            "company": "Microsoft",
+            "image": "./assets/images/users_images/bill.jpg",
+            "vote": 120,
+            "reviews": [
+                {
+                    "stars": 5,
+                    "body": "I like Mr. Bill",
+                    "author": "abc@test.com"
+                },
+                {
+                    "stars": 3,
+                    "body": "Great job Mr. Bill!",
+                    "author": "pqr@test.com"
+                }
+            ]
+        },
+        {
+            "firstName": "Steve",
+            "lastName": "Jobs",
+            "dob": "1965-01-01T18:30:00.000Z",
+            "income": 0,
+            "isWorking": false,
+            "company": "Apple",
+            "image": "./assets/images/users_images/steve.png",
+            "vote": 100,
+            "reviews": [
+                {
+                    "stars": 5,
+                    "body": "I like Mr. Steve",
+                    "author": "abc@test.com"
+                },
+                {
+                    "stars": 3,
+                    "body": "Great job Mr. Steve!",
+                    "author": "pqr@test.com"
+                }
+            ]
+        },
+        {
+            "firstName": "Tim B.",
+            "lastName": "Lee",
+            "dob": "1965-07-31T18:30:00.000Z",
+            "income": 40000,
+            "isWorking": true,
+            "company": "World Wide Web",
+            "image": "./assets/images/users_images/tim.jpg",
+            "vote": 180,
+            "reviews": [
+                {
+                    "stars": 5,
+                    "body": "I like Mr. Tim",
+                    "author": "abc@test.com"
+                },
+                {
+                    "stars": 3,
+                    "body": "Great job Mr. Tim!",
+                    "author": "pqr@test.com"
+                }
+            ]
+        }
+    ]
+}

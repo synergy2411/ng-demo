@@ -1,18 +1,29 @@
 <html ng-app="UserModule">
 <head>
-<title>My App</title>
-<script src="./node_modules/angular/angular.min.js"></script>
-<script src="./scripts/app.js"></script>
-<script src="./scripts/product-module.js"></script>
-<script src="./scripts/directive-demo-module.js"></script>
-<script src="./scripts/filter-module.js"></script>
-<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="./styles.css">
+    <title>My App</title>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/services-demo-module.js"></script>
+    <script src="./scripts/product-module.js"></script>
+    <script src="./scripts/directive-demo-module.js"></script>
+    <script src="./scripts/filter-module.js"></script>
+
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
+    <div class="container" ng-controller="ServiceDemoController">
+        <h2>Service Demo Controller </h2>
+        <p>Magic Number : {{ magicNumber }}</p>
+        <p>Service Magic Number : {{ serviceMagicNumber }} </p>
+        <p>Value Company Name : {{ valueCompanyName }}</p>
+        <p>Constant Company Name : {{ constantCompanyName }}</p>
+    </div>
 
     <div class="container" ng-controller="FilterController">
+
+        Now : {{ now }}
             <table class="table table-stripped table-responsive">
                 <thead>
                 <tr>
@@ -42,7 +53,7 @@
                     <tr ng-repeat="employee in employees |orderBy:sortColumn:sortOrder">
                         <td>{{employee.employeeId }}</td>
                         <td>{{employee.employeeName| uppercase}}</td>
-                        <td>{{employee.contactNumber }}</td> 
+                        <td>{{employee.contactNumber | concatenationalcode : 'US'}}</td> 
                     </tr>
                 </tbody>
             </table>
@@ -93,6 +104,9 @@
     </div>
 
 <div class="container" ng-controller="UserController">
+
+    {{ users | json }}
+    
     <h1> {{ helloMsg }} 
         <span class="pull-right"> 
             <button class="btn btn-default" ng-click="maxVote()">

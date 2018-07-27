@@ -1,6 +1,18 @@
 (function(){
-    angular.module("FilterModule", [])
+    angular.module("FilterDemoModule", [])
+    .filter("concatenationalcode", function(){
+        return function(value, countryName){
+            console.log(countryName);
+            if(countryName==='IND')
+                return "+91 " + value;
+            else if (countryName === 'US')  
+                return "+01 " + value;
+            else 
+                return "80 " + value;
+        }
+    })
     .controller('FilterController', function($scope,$filter) {
+        $scope.now = $filter('date') (new Date());
         $scope.employees = 
            [
                {
