@@ -16,9 +16,30 @@ console.log("APP LOADED SUCCESFULLY!");
     app.run(function(){
         console.log("RUN");
     });
-    app.controller("UserController", function ($scope, DemoFactory) {
+    app.controller("UserController", function ($scope, DemoFactory, DataService) {
         $scope.helloMsg = "Hello World!";
-        $scope.users = DemoFactory.getUserData();
+        //$scope.users = DemoFactory.getUserData();
+        
+        // Handled Http Response Promise
+        // DataService.getUserData()
+        //     .then(function(response){
+        //         // console.log("RESPONSE -- " , response);
+        //         $scope.users = response.data.users;
+        //     },function(){})
+        //     .catch(function(err){console.log(err)});
+
+        // Handled $q Response Promise
+        DataService.getApiUserData()
+            .then(function(users){
+                // console.log("-- USERS --" , users);
+                $scope.users = users;
+            }, function(response){
+                console.log(response);
+            }).catch(function(err){
+                console.log(err);
+            })
+
+
         // $scope.users = users;
         $scope.moreInfo = function (user) {
             alert(user.firstName + " is working with " + user.company + "!");

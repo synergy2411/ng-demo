@@ -8,6 +8,7 @@
             // console.log("DataService MAgic Number : " + DataService.MAGIC_NUMBER);
         })
         .run(function(DemoFactory, DataService){
+            DataService.getUserData();
             console.log("Factory Magic Number : " + DemoFactory.MAGIC_NUMBER);
             console.log("DataService MAgic Number : " + DataService.MAGIC_NUMBER);
         })
@@ -26,11 +27,41 @@
                 }
             }
         })
-        .service("DataService", function(){
+        .service("DataService", function($http, $q){
             this.MAGIC_NUMBER = Math.round(Math.random()*10);
-            this.getUserData = function(){
-                return users;
+            this.getApiUserData = function(){
+                var deferred = $q.defer();
+                $http({
+                    url : "./model/user-data.json",
+                    method : "GET"
+                }).then(function(response){
+                    deferred.resolve(response.data.users);
+                }, function(response){
+                    console.log(response);
+                    deferred.reject(response);
+                })
+                return deferred.promise;
             }
+            this.getUserData = function(){
+                return  $http({
+                        url : "./model/user-data.json",
+                        method : "GET"
+                    })
+                // var users = [];
+                // $http({
+                //     url : "./model/user-data.json",
+                //     method : "GET"
+                // }).then(function(response){
+                //         console.log(response.data.users);
+                //         users = response.data.users;
+                //     }, function(response){
+                //         console.log(response);
+                //     }).catch(function(err){
+                //         console.log(err);
+                //     })
+                //     console.log("USERS -- ", users);
+                //     return users;
+                }
         })
         .provider("DemoProvider", {
             $get : function(){
